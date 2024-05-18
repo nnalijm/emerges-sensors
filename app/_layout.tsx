@@ -11,7 +11,7 @@ export default function RootLayout() {
       setGyroData(gyroscopeData);
     });
 
-    Gyroscope.setUpdateInterval(100); // Update every 1000 milliseconds
+    Gyroscope.setUpdateInterval(10); // Update every 1000 milliseconds
 
     return () => subscription && subscription.remove();
   }, []);
@@ -19,12 +19,24 @@ export default function RootLayout() {
   return (
     
     <SafeAreaView style={{flex: 1}}>
-      <View>
-        <Text>Gyroscope Data:</Text>
-        <Text>X: {gyroData.x.toFixed(2)}</Text>
-        <Text>Y: {gyroData.y.toFixed(2)}</Text>
-        <Text>Z: {gyroData.z.toFixed(2)}</Text>
+      <View style={styles.container}>
+        <Text style={styles.text}>Gyroscope Data:</Text>
+        <Text style={styles.text}>X: {gyroData.x.toFixed(2)}</Text>
+        <Text style={styles.text}>Y: {gyroData.y.toFixed(2)}</Text>
+        <Text style={styles.text}>Z: {gyroData.z.toFixed(2)}</Text>
       </View>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  text:{
+    fontSize: 18,
+    fontWeight: '600'
+  }
+})
